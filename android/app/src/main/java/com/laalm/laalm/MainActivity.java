@@ -1,4 +1,4 @@
-package com.viba.laalm;
+package com.laalm.laalm;
 
 import io.flutter.embedding.android.FlutterActivity;
 

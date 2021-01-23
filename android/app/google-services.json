@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "980652922700",
+    "project_id": "laalm-56f8a",
+    "storage_bucket": "laalm-56f8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980652922700:android:75f0895016ae5462d061e9",
+        "android_client_info": {
+          "package_name": "com.laalm.laalm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980652922700-o9p8p5odb2kdp6ul9kfh562o07lk9ua1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS08jw_FTiblIozVCfyFiFg0PvuEdwhyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980652922700-o9p8p5odb2kdp6ul9kfh562o07lk9ua1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
