@@ -1,219 +1,414 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:direct_select/direct_select.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-String commitment;
-String demography;
-String lifestyle;
-class secondregistration extends StatefulWidget {
+
+class MyHomePage extends StatefulWidget {
   @override
-  _secondregistrationState createState() => _secondregistrationState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _secondregistrationState extends State<secondregistration> {
+class _MyHomePageState extends State<MyHomePage> {
+  final elements1 = [
+    "Aware of meditation",
+    "Irregular Practitioner",
+    "Regular Practitioner",
+  ];
+  final elements2 = [
+    "Aware Of Yoga",
+    "Irregular Practitioner",
+    "Regular Practitioner",
+  ];
+
+  final elements3 = [
+    "Vegetarian",
+    "Eggterian",
+    "Vegan",
+    "NonVegetarian",
+  ];
+
+  final elements4 = [
+    "Low",
+    "Middle",
+    "UpperMiddle",
+    "High",
+  ];
+  final elements5 = [
+    "Rural",
+    "Urban"
+  ];
+  final elements6 = [
+    "Active",
+    "Sedentary",
+  ];
+  final elements7 = [
+    "Nuclear",
+    "Joint",
+  ];
+
+  int selectedIndex1 = 0,
+      selectedIndex2 = 0,
+      selectedIndex3 = 0,
+      selectedIndex4 = 0,
+      selectedIndex5=0,
+  selectedIndex6=0,
+  selectedIndex7=0;
+  List<Widget> _buildItems1() {
+    return elements1
+        .map((val) => MySelectionItem(
+      title: val,
+    ))
+        .toList();
+  }
+
+  List<Widget> _buildItems2() {
+    return elements2
+        .map((val) => MySelectionItem(
+      title: val,
+    ))
+        .toList();
+  }
+
+  List<Widget> _buildItems3() {
+    return elements3
+        .map((val) => MySelectionItem(
+      title: val,
+    ))
+        .toList();
+  }
+
+  List<Widget> _buildItems4() {
+    return elements4
+        .map((val) => MySelectionItem(
+      title: val,
+    ))
+        .toList();
+  }
+  List<Widget> _buildItems5() {
+    return elements5
+        .map((val) => MySelectionItem(
+      title: val,
+    ))
+        .toList();
+  }
+  List<Widget> _buildItems6() {
+    return elements6
+        .map((val) => MySelectionItem(
+      title: val,
+    ))
+        .toList();
+  }
+  List<Widget> _buildItems7() {
+    return elements7
+        .map((val) => MySelectionItem(
+      title: val,
+    ))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          backgroundColor: Color(0XFFfefffd),
-          appBar: AppBar(
-            backgroundColor: Color(0xff491A57),
-          ),
-          body: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Health Info'),
+        backgroundColor:Color(0xff491A57) ,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Center(
+          child: SingleChildScrollView(
             child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButton<String>(
-                    hint: Text('commitmentlevel',
-                    style: TextStyle(
-                      color: Color(0xff491A57),
-                    ),
-                    ),
-                    value: commitment,
-                    icon: Icon(Icons.expand_more),
-                    iconSize: 24,
-                    elevation: 16,
-                    onChanged: (String newValue) {
-                      setState(() {
-                        commitment = newValue;
-                      });
-                    },
-                    items: <String>['1 month','6 months','1 year']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    keyboardType:TextInputType.multiline,
-                      maxLines: 2,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xfff4f3f4),
-                        hintText: 'History of medication',
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide:  BorderSide(color: Color(0xff491a57), ),
-                        ),
-                        // fillColor: Color(0xfff4f3f4),
-                        focusedBorder:OutlineInputBorder(
-                          borderSide: const BorderSide(color:Color(0xff491a57),width: 2.0),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                      ),
-                    ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.multiline,
-                    maxLines: 2,
-                    decoration: InputDecoration(
-                      hintText: 'History of Yoga',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(25.0),
-                        borderSide:  BorderSide(color: Color(0xff491a57), ),
-                      ),
-                      // fillColor: Color(0xfff4f3f4),
-                      focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color:Color(0xff491a57),width: 2.0),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xfff4f3f4),
-                      hintText: 'Food Preference',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(25.0),
-                        borderSide:  BorderSide(color: Color(0xff491a57), ),
-                      ),
-                      // fillColor: Color(0xfff4f3f4),
-                      focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color:Color(0xff491a57),width: 2.0),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xfff4f3f4),
-                      hintText: 'Income level',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(25.0),
-                        borderSide:  BorderSide(color: Color(0xff491a57), ),
-                      ),
-                      // fillColor: Color(0xfff4f3f4),
-                      focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color:Color(0xff491a57),width: 2.0),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                  ),
-                ),
-                DropdownButton<String>(
-                  hint: Text('Demography',
-                    style: TextStyle(
-                      color: Color(0xff491A57),
-                    ),
-                  ),
-                    value: demography,
-                    icon: Icon(Icons.expand_more),
-                    onChanged:(String value){
-                    setState(() {
-                      demography=value;
-                    });
-                    },
-                    items:<String>['Urban','Rural'].map<DropdownMenuItem<String>>((String value){
-                       return DropdownMenuItem<String>(
-                         value:value,
-                         child: Text(value),
-                       );
-                      }).toList(),
-
-                ),
-                DropdownButton<String>(
-                  hint: Text('LifeStyle',
-                    style: TextStyle(
-                      color: Color(0xff491A57),
-                    ),
-                  ),
-                  value: lifestyle,
-                  icon: Icon(Icons.expand_more),
-                  onChanged:(String value){
-                    setState(() {
-                      lifestyle=value;
-                    });
-                  },
-                  items:<String>['Active','Silent'].map<DropdownMenuItem<String>>((String value){
-                    return DropdownMenuItem<String>(
-                      value:value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    keyboardType:TextInputType.multiline,
-                    maxLines: 2,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xfff4f3f4),
-                      hintText: 'Family size',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(25.0),
-                        borderSide:  BorderSide(color: Color(0xff491a57), ),
-                      ),
-                      // fillColor: Color(0xfff4f3f4),
-                      focusedBorder:OutlineInputBorder(
-                        borderSide: const BorderSide(color:Color(0xff491a57),width: 2.0),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                  ),
-                ),
-                   Padding(
-                     padding: const EdgeInsets.only(bottom: 20),
-                     child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                           color: Color(0xff491A57),
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text(
-                            'Register',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 2.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "History Of Meditation",
+                          style: TextStyle(
+                              color: Color(0xff491A57), fontWeight: FontWeight.w500,
+                          fontSize: 20,
                           ),
                         ),
-                        onPressed:(){
-                          //Navigator.pushNamed(context, '/secondregister');
-                          Fluttertoast.showToast(msg: 'You are registerd successfully');
-                        }),
-                   ),
-              ],
-            ),
+
+                           Image.asset('images/meditationhistory.png',
+                          height:80,
+                            width: 120,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top:20),
+                    child: DirectSelect(
+                        itemExtent: 43.0,
+                        selectedIndex: selectedIndex1,
+                        backgroundColor: Colors.white,
+                        child: MySelectionItem(
+                          isForList: false,
+                          title: elements1[selectedIndex1],
+                        ),
+                        onSelectedItemChanged: (index) {
+                          setState(() {
+                            selectedIndex1 = index;
+                          });
+                        },
+                        items: _buildItems1()),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "History Of Yoga",
+                          style: TextStyle(
+                              color: Color(0xff491A57), fontWeight: FontWeight.w500,
+                            fontSize: 20,
+
+                          ),
+                        ),
+                           Image.asset('images/yogahistory.png',
+                            height:80,
+                            width: 120,
+
+                        ),
+                      ],
+                    ),
+                  ),
+                  DirectSelect(
+                      itemExtent: 43.0,
+                      selectedIndex: selectedIndex2,
+                      child: MySelectionItem(
+                        isForList: false,
+                        title: elements2[selectedIndex2],
+                      ),
+                      onSelectedItemChanged: (index) {
+                        setState(() {
+                          selectedIndex2 = index;
+                        });
+                      },
+                      items: _buildItems2()),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Food Preferences",
+                          style: TextStyle(
+                              color: Color(0xff491A57), fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          ),
+                        ),
+                           Image.asset('images/food.png',
+                            height:80,
+                            width: 120,
+                        ),
+                      ],
+                    ),
+                  ),
+                  DirectSelect(
+                      itemExtent: 43.0,
+                      selectedIndex: selectedIndex3,
+                      child: MySelectionItem(
+                        isForList: false,
+                        title: elements3[selectedIndex3],
+                      ),
+                      onSelectedItemChanged: (index) {
+                        setState(() {
+                          selectedIndex3 = index;
+                        });
+                      },
+                      items: _buildItems3()),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Income Level",
+                          style: TextStyle(
+                              color: Color(0xff491A57), fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          ),
+                        ),
+
+                           Image.asset('images/incomelevel.png',
+                            height:80,
+                            width: 120,
+                          ),
+                      ],
+                    ),
+                  ),
+                  DirectSelect(
+                      itemExtent: 43.0,
+                      selectedIndex: selectedIndex4,
+                      child: MySelectionItem(
+                        isForList: false,
+                        title: elements4[selectedIndex4],
+                      ),
+                      onSelectedItemChanged: (index) {
+                        setState(() {
+                          selectedIndex4 = index;
+                        });
+                      },
+                      items: _buildItems4()),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Demography",
+                          style: TextStyle(
+                              color: Color(0xff491A57), fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          ),
+                        ),
+                        Image.asset('images/demography.png',
+                          height:80,
+                          width: 120,
+                        ),
+                      ],
+                    ),
+                  ),
+                  DirectSelect(
+                      itemExtent: 43.0,
+                      selectedIndex: selectedIndex5,
+                      child: MySelectionItem(
+                        isForList: false,
+                        title: elements5[selectedIndex5],
+                      ),
+                      onSelectedItemChanged: (index) {
+                        setState(() {
+                          selectedIndex5 = index;
+                        });
+                      },
+                      items: _buildItems5()),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Lifestyle",
+                          style: TextStyle(
+                              color: Color(0xff491A57), fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          ),
+                        ),
+                        Image.asset('images/lifestyle.png',
+                          height:80,
+                          width: 120,
+                        ),
+                      ],
+                    ),
+                  ),
+                  DirectSelect(
+                      itemExtent: 43.0,
+                      selectedIndex: selectedIndex6,
+                      child: MySelectionItem(
+                        isForList: false,
+                        title: elements6[selectedIndex6],
+                      ),
+                      onSelectedItemChanged: (index) {
+                        setState(() {
+                          selectedIndex6 = index;
+                        });
+                      },
+                      items: _buildItems6()),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Family",
+                          style: TextStyle(
+                              color: Color(0xff491A57), fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          ),
+                        ),
+                        Image.asset('images/family.png',
+                          height:80,
+                          width: 120,
+                        ),
+                      ],
+                    ),
+                  ),
+                  DirectSelect(
+                      itemExtent: 43.0,
+                      selectedIndex: selectedIndex7,
+                      child: MySelectionItem(
+                        isForList: false,
+                        title: elements6[selectedIndex7],
+                      ),
+                      onSelectedItemChanged: (index) {
+                        setState(() {
+                          selectedIndex7 = index;
+                        });
+                      },
+                      items: _buildItems7()),
+                  FlatButton(
+                      color: Color(0xff491A57),
+                      onPressed: (){
+                        Fluttertoast.showToast(msg: 'Applied Successfully');
+                        Navigator.pushNamed(context,'/dashboard');
+                      }, child:Text(
+                    'Apply',
+                    style: TextStyle(
+                      color: Color(0xffFEFFFD),
+                      fontSize: 20,
+                    ),
+                  ))
+                ]),
           ),
-    ),
+        ),
+      ),
+    );
+  }
+
+}
+class MySelectionItem extends StatelessWidget {
+  final String title;
+  final bool isForList;
+
+  const MySelectionItem({Key key, this.title, this.isForList = true})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 60.0,
+      child: isForList
+          ? Padding(
+        child: _buildItem(context),
+        padding: EdgeInsets.all(10.0),
+      )
+          : Card(
+        margin: EdgeInsets.symmetric(horizontal: 10.0),
+        child: Stack(
+          children: <Widget>[
+            _buildItem(context),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Icon(Icons.arrow_drop_down),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  _buildItem(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      alignment: Alignment.center,
+      child: Text(title),
     );
   }
 }

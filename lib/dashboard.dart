@@ -1,4 +1,16 @@
 import 'package:flutter/material.dart';
+import 'chatbot.dart';
+import 'Meditationscreen.dart';
+import 'reports.dart';
+import 'Dashboardsecondscreen.dart';
+int currentindex=0;
+List<Widget> screens=[
+  Meditation(),
+  chitBot(),
+  DashboardScreen(),
+  reports(),
+
+];
 class dashboard extends StatefulWidget {
   @override
   _dashboardState createState() => _dashboardState();
@@ -8,123 +20,54 @@ class _dashboardState extends State<dashboard> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return new  Scaffold(
-        backgroundColor: Color(0xfff8FE0F4),
-        body:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: RaisedButton(onPressed:(){},
-                padding: const EdgeInsets.fromLTRB(68.0,13.0,68.0,13.0),
-                elevation: 8.0,
-                color: Color(0xFFFEFFFD),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+        body:screens[currentindex],
+       bottomNavigationBar:BottomNavigationBar(
+         type: BottomNavigationBarType.fixed,
+         selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey,
+          currentIndex: currentindex,
+          onTap:onTap,
+          backgroundColor: Color(0xff491A57),
+          items: [
+            BottomNavigationBarItem(
+                icon:
+                Icon(Icons.self_improvement,
+                //size: 5,
+                color: Color(0xfffefffd),
                 ),
-                child: Text('Achievement',
-                  style:TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'fonts/Lato.ttf',
-                    fontWeight:FontWeight.w400,
-                    color: Color(0xfff491a57),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Center(
-              child: RaisedButton(
-                onPressed:(){
-                  Navigator.pushNamed(context, '/dashboardsecond');
-                },
-                padding: const EdgeInsets.fromLTRB(80.0,13.0,80.0,13.0),
-                elevation: 8.0,
-                color: Color(0xFFFEFFFD),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text('Dashboard',
-                  style:TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'fonts/Lato.ttf',
-                    fontWeight:FontWeight.w400,
-                    color: Color(0xfff491a57),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height:20,
-            ),
-            Center(
-              child: RaisedButton(onPressed:(){
-                Navigator.pushNamed(context, '/registration');
-              },
-                padding: const EdgeInsets.fromLTRB(78.0,13.0,78.0,13.0),
-                elevation: 8.0,
-                color: Color(0xFFFEFFFD),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text('Registration',
-                  style:TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'fonts/Lato.ttf',
-                    fontWeight:FontWeight.w400,
-                    color: Color(0xfff491a57),
-                  ),
-                ),
-              ),
-            ),
+               label: 'Meditation',
 
-            SizedBox(
-              height:20,
             ),
-            Center(
-              child: RaisedButton(onPressed:(){
-                Navigator.pushNamed(context, '/meditation');
-              },
-                padding: const EdgeInsets.fromLTRB(85.0,13.0,85.0,13.0),
-                elevation: 8.0,
-                color: Color(0xFFFEFFFD),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+            BottomNavigationBarItem(icon:
+                Icon(Icons.emoji_events,
+                  //size: 5,
+                  color: Colors.white,
                 ),
-                child: Text('Meditation',
-                  style:TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'fonts/Lato.ttf',
-                    fontWeight:FontWeight.w400,
-                    color: Color(0xfff491a57),
-                  ),
-                ),
-              ),
+                label:'Achievements',
+
             ),
-            SizedBox(
-              height: 20,
+            BottomNavigationBarItem(icon:
+                Icon(Icons.home,
+                  //size: 5,
+                  color: Colors.white,
+                ),
+                label:'Dashboard',
             ),
-            Center(
-              child: RaisedButton(onPressed:(){},
-                padding: const EdgeInsets.fromLTRB(98.0,13.0,98.0,13.0),
-                elevation: 8.0,
-                color: Color(0xFFFEFFFD),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text('Reports',
-                  style:TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'fonts/Lato.ttf',
-                    fontWeight:FontWeight.w400,
-                    color: Color(0xfff491a57),
-                  ),
-                ),
-              ),
+            BottomNavigationBarItem(icon:
+            Icon(Icons.library_books,
+              //size: 5,
+              color: Colors.white,
+            ),
+              label:'Reports',
             ),
           ],
         ),
     );
+  }
+  onTap(index){
+    setState(() {
+      currentindex=index;
+    });
   }
   }
 

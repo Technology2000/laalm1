@@ -253,10 +253,10 @@ class _detailsState extends State<details> {
                 ),
                 elevation: 6,
                 onPressed: (){
-                  if(name.text==''||age.text==''||father.text==''||mother.text==''||mobile.text==''||email.text==''||address.text==''||dropdownValue==null) {
-                    Fluttertoast.showToast(msg: 'Please provide all the details');
-                  }
-                  else{
+                  // if(name.text==''||age.text==''||father.text==''||mother.text==''||mobile.text==''||email.text==''||address.text==''||dropdownValue==null) {
+                  //   Fluttertoast.showToast(msg: 'Please provide all the details');
+                  // }
+                  // else{
                     CollectionReference ref = Firestore.instance.collection(
                         'Users');
                     DocumentReference documentReference = ref.document(userid);
@@ -272,8 +272,8 @@ class _detailsState extends State<details> {
                     }
                     );
                     Navigator.pushNamed(context, '/dashboard');
-                  }
-                },
+                  },
+                //},
               child:Text('Next',
               style: TextStyle(
                 color: Color(0XFF491A57),
